@@ -23,7 +23,8 @@ class BurgerBuilder extends Component {
       meat: 0
     },
     totalPrice: 4,
-    purchaseable: false
+    purchaseable: false,
+    purchasing: false
   };
 
   // purchaseable = true if at least one ingredient is added
@@ -82,6 +83,11 @@ class BurgerBuilder extends Component {
     this.updatePurchaseState(updatedIngredients);
   };
 
+  // show/hide OrderSummary modal
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
+  };
+
   render() {
     // true/false depending if value <= 0 for that key/ingredient - {salad: true, meat: false, ...}
     // pass to BuildControls to BuildControl and disable LESS btn on ingredient if value is true
@@ -94,7 +100,7 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Modal>
+        <Modal show={this.state.purchasing}>
           <OrderSummary ingredients={this.state.ingredients} />
         </Modal>
 
@@ -105,6 +111,7 @@ class BurgerBuilder extends Component {
           disabled={disabledInfo}
           purchaseable={!this.state.purchaseable}
           price={this.state.totalPrice}
+          order={this.purchaseHandler}
         />
       </Aux>
     );
