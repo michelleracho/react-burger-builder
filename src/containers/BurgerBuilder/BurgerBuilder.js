@@ -93,6 +93,11 @@ class BurgerBuilder extends Component {
     this.setState({ purchasing: false });
   };
 
+  // continue purchase
+  purchaseContinueHandler = () => {
+    alert('CONTINUE!!');
+  };
+
   render() {
     // true/false depending if value <= 0 for that key/ingredient - {salad: true, meat: false, ...}
     // pass to BuildControls to BuildControl and disable LESS btn on ingredient if value is true
@@ -109,7 +114,12 @@ class BurgerBuilder extends Component {
           show={this.state.purchasing}
           closeModal={this.purchaseCancelHandler}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            cancel={this.purchaseCancelHandler}
+            continue={this.purchaseContinueHandler}
+            price={this.state.totalPrice}
+          />
         </Modal>
 
         <Burger ingredients={this.state.ingredients} />
