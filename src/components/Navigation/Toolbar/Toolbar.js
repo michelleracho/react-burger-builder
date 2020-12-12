@@ -11,10 +11,10 @@ const Toolbar = props => {
   return (
     <header className={styles.Toolbar}>
       <div>MENU</div>
-      <div className={styles.Logo}>
+      <div className={`${styles.Logo} ${styles.DesktopOnly}`}>
         <Logo />
       </div>
-      <nav>
+      <nav className={styles.DesktopOnly}>
         <NavigationItems />
       </nav>
     </header>
