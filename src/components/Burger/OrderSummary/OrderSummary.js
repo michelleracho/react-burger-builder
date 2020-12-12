@@ -2,6 +2,8 @@ import React from 'react';
 import Aux from '../../../hoc/Auxiliary';
 import Button from '../../UI/Button/Button';
 
+import styles from './OrderSummary.module.css';
+
 const OrderSummary = props => {
   const ingredientSummary = Object.keys(props.ingredients).map(
     ingredientKey => {
@@ -25,21 +27,23 @@ const OrderSummary = props => {
     <Aux>
       <h3>Your Order</h3>
       <p>A delicious burger with the following ingredients:</p>
-      <ul style={{ margin: '1rem 3rem' }}>{ingredientSummary}</ul>
+      <ul className={styles.OrderSummaryUl}>{ingredientSummary}</ul>
 
       <p>
         <strong>Total Price: ${props.price.toFixed(2)}</strong>
       </p>
-      <p style={{ display: 'inline-block', marginRight: '2rem' }}>
-        Continue to Checkout?
-      </p>
 
-      <Button btnType="Danger" click={props.cancel}>
-        CANCEL
-      </Button>
-      <Button btnType="Success" click={props.continue}>
-        CONTINUE
-      </Button>
+      <div className={styles.OrderSummaryContinue}>
+        <p>Continue to Checkout?</p>
+        <div>
+          <Button btnType="Danger" click={props.cancel}>
+            CANCEL
+          </Button>
+          <Button btnType="Success" click={props.continue}>
+            CONTINUE
+          </Button>
+        </div>
+      </div>
     </Aux>
   );
 };
